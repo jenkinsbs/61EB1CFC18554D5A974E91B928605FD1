@@ -19,8 +19,7 @@
         "provider": "github",
         "repo": "bacon",
         "owner": "ostosh",
-        "private": "true",
-        "token": "ca2b8041b33a3b8473866296f72e8284b312933d"
+        "private": "true"
       }
     ],
     "directories": {
