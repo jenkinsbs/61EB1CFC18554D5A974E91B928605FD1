@@ -4,6 +4,8 @@ language: c
 matrix:
   include:
   - os: osx
+  - os: windows
+  - os: linux
 node_js:
 - 7.9.0
 cache:
