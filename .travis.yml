@@ -1,47 +1,38 @@
 sudo: required
 dist: trusty
-
 language: c
-
 matrix:
   include:
-    - os: osx
-    
+  - os: osx
 node_js:
-  - 7.9.0
-
+- 7.9.0
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
-      - icnsutils
-      - graphicsmagick
-      - libgnome-keyring-dev
-      - xz-utils
-      - xorriso
-      - xvfb
-
+    - g++-4.8
+    - icnsutils
+    - graphicsmagick
+    - libgnome-keyring-dev
+    - xz-utils
+    - xorriso
+    - xvfb
 install:
-  - nvm install 7.9.0
-  - npm install electron-builder@next
-  - npm install
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-
+- nvm install 7.9.0
+- npm install electron-builder@next
+- npm install
+- export DISPLAY=':99.0'
+- Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start &
-  - sleep 3
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start &
+- sleep 3
 script:
-  - npm run publish-all
-  
+- npm run publish-all
 env:
   global:
-    - secure: D/WmWr0nnYuyeliTNB4IzY6j8BM6rvofwPIQt92wuXDy0IWoWbnozDyQ1/4E20cYOhdTj0PjBDt726O4dH/FGiHDGrPa7XI1ccZK2tnE2uIiLpA5CWhA2KxLG4FiL8TMzi9hsGGnsTr1RAZ45mvGGTdEnkZ7Py2S/vzEfC/eZpvvw49zu3+UghzdVY34bGtyDpIC32+uUzL/uWKTvXTh5ycltgneMrTyjWIqsL4y53axlPVvuJIKEphiOMY489HKxwXj97wg1bEjdXvEDP8mlkb0YyG14Q9Nzr5gc+ucWLru81+ySeAUTySjhQN5xKu8J0vDHnsESqjhp+MsttRZJ5hvi1f6HX89fotwWL516znBQItA5wAVpoXtPKeUiCnxLfn/h6C6tfLLEreQ1bhKUKYyLa4kCCBE1K184DSHcpc7txObOk0cBJTAIRuf0C7t7rhCv+UyUXT8GwqripyFZLIJi5Cr3iSXvdGYcGb/YuIZeb+lpHWllo1YmQf8Eq4kmuY4QcPhz2adruEq6R7bAqo/u65hSDCo6yALPXjOw2jD765DPwkjbo3h1z6SxU73eTpJMOL37AP/kZUWYD910BR5tf7SwdouT/ETHYvJnnSfYk+lllsmovVVHwhvA6cF9Opy4pZwqid2Y9+AAHWBe18YD7OcUeoc+68tX4YgAiw=
+    secure: fAJbd6uct+KhdpE/LkOXNQVUCLPNnvyh9txvprGqIfxARmQXxZLLDeveCztkLhBDeFxePf+Z2MekfCX7xNnqyt2fqbSTIQZENoltsf4L548Q+2cmiJ05yFXvOoJo59l9KnhorhxpCSFQGofziWBlwScBmyWbNkSkCXtkmJpj+5oE6eyDuKeBPQ6iBdvq0obQf7x33t30WVVNAy+U7lS0yYsfx4OXhMgL7u1GnGNvntMezVxgeSGKYIjDyXSET9yGYF48izBpZEqTUMgBzpYtla7xl9S5SZTpbphrwSZWpCDxNfQ2H6g6lyALrOzGzKlRWe7K0ThmpZU5pM1Na4xTGxJyEuxjcQnGcA04BU8IJ1C2eFuvB0zvt18iDV2RxYI9HV/8dvAV62g/zlzTouA0mjE8eC9rSd2ZIFHmltPjZJbFpg5a3KOqUIt1K3fWyfzmn8eD5jSHL83t5uFBfbwVmi4Y6PfnFzkS/AEM1rjbjcPKdMilU56TvovGaJ1E14RlLTwT0vMfM/BhrbXDdXxEKQn0T1+8K4YGGAuwkVMEuBLWKJn3UMrTof1IRyjSUgI7FQ1DNwIKrwX5n7/Wk7CZAIJ7symsZciQyRa+LeMbfdK7PdbCDz5klHL1W8NRu64cwxmtuc9CIvHvL/1B0XKDmsLMyS3NaF7Fw6dul80evng=
