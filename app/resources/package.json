@@ -1,12 +1,12 @@
 {
-  "name": "BrightAuthor",
-  "productName": "BrightAuthor",
-  "version": "0.10.1",
-  "description": "BrightAuthor Connected",
-  "author": "BrightSign",
-  "main": "main.js",
-  "devEngines": {
-    "node": "7.9.0",
-    "npm": "4.2.0"
-  }
+    "name":  "BrightAuthor",
+    "productName":  "BrightAuthor",
+    "version":  "0.10.0",
+    "description":  "BrightAuthor Connected",
+    "author":  "BrightSign",
+    "main":  "main.js",
+    "devEngines":  {
+                       "node":  "7.9.0",
+                       "npm":  "4.2.0"
+                   }
 }
