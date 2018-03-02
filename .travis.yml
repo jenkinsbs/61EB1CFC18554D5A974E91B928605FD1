@@ -1,13 +1,11 @@
-sudo: required
-dist: trusty
 language: c
-matrix:
-  include:
-  - os: osx
-  - os: windows
-  - os: linux
+dist: trusty
+sudo: required
+os: 
+  - osx
+  - linux
 node_js:
-- 7.9.0
+  - "7"
 cache:
   directories:
   - node_modules
@@ -24,17 +22,18 @@ addons:
     - xorriso
     - xvfb
 install:
-- nvm install 7.9.0
-- npm install electron-builder@next
-- npm install
-- export DISPLAY=':99.0'
-- Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - nvm install 7.9.0
+  - npm install electron-builder@next
+  - npm install
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=':99.0'; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1; fi
 before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start &
-- sleep 3
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
 script:
-- npm run publish-all
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then npm run package-mac; fi
+  - if [[ "$TRAVIS_OS_NAME" = "linux" ]]; then npm run package-linux; fi
 env:
   global:
     secure: fAJbd6uct+KhdpE/LkOXNQVUCLPNnvyh9txvprGqIfxARmQXxZLLDeveCztkLhBDeFxePf+Z2MekfCX7xNnqyt2fqbSTIQZENoltsf4L548Q+2cmiJ05yFXvOoJo59l9KnhorhxpCSFQGofziWBlwScBmyWbNkSkCXtkmJpj+5oE6eyDuKeBPQ6iBdvq0obQf7x33t30WVVNAy+U7lS0yYsfx4OXhMgL7u1GnGNvntMezVxgeSGKYIjDyXSET9yGYF48izBpZEqTUMgBzpYtla7xl9S5SZTpbphrwSZWpCDxNfQ2H6g6lyALrOzGzKlRWe7K0ThmpZU5pM1Na4xTGxJyEuxjcQnGcA04BU8IJ1C2eFuvB0zvt18iDV2RxYI9HV/8dvAV62g/zlzTouA0mjE8eC9rSd2ZIFHmltPjZJbFpg5a3KOqUIt1K3fWyfzmn8eD5jSHL83t5uFBfbwVmi4Y6PfnFzkS/AEM1rjbjcPKdMilU56TvovGaJ1E14RlLTwT0vMfM/BhrbXDdXxEKQn0T1+8K4YGGAuwkVMEuBLWKJn3UMrTof1IRyjSUgI7FQ1DNwIKrwX5n7/Wk7CZAIJ7symsZciQyRa+LeMbfdK7PdbCDz5klHL1W8NRu64cwxmtuc9CIvHvL/1B0XKDmsLMyS3NaF7Fw6dul80evng=
