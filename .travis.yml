@@ -1,39 +1,40 @@
 language: c
 dist: trusty
 sudo: required
-os: 
-  - osx
-  - linux
+env:
+  global:
+  - BRIGHTAUTHOR_VERSION=0.10.1
+    #AWS_ACCESS_KEY_ID=[secured] (travis-ci)
+  - secure: W4TrLkSdt0k0QATjpN+c33L+N9dlRwA1j/Mm1aQ5BWMEqIf/lKBAWXnEQeo7fRJM23sfX+oX+QQoLzRMuXj9pcc8dqytuWKza5/CPBXyinGy9zVpWqtvI3E1LpHoDWOSPC3XZHq/N/aiiRqakpx3s+vuzeYIOsTyMBcjtyj1YpixE2MS2baAhQWsTUKUwDSZDBhkULGVUMFiJ+nvwES6kuPVk9miDJq/D15Al08wJBWTkpEEtr6spnKfOOCd386WYMOuJlDVEm2YUCaUn0uWusoUQ2N1XHYztWLnpE8XH5G9JEyea31T5spduM3HzMCFmzrjYOMEO73jEeyicU0us+UdcBw2+gxxGMORG7C5qPLagcyifqRvZqwIZI1kv0RnYlYO740JwgoyHPGilNwNFFnvqWCUu+RRWrQdUQyaa19o5IFaXNYkEkonE1Q+yq2L1Obk3A1NU44S6IOb5DvyUZGhVyCYpbC93wLtUK5KWk8P4Mt7KGwO0nxfp31UVpwx6hJ/z4Q2j/aAuAcNscNr+beMErRILajy/1wD+g34kCn2UCdrV574kYeI99iOoeDfzAffVxc0DfI+Vu4fJX3SvwEmxCbn/VJc+majjytK2FW6XHB0lIoBcgTGOTLVyxaCwGkK4cNf2LOb9lhJlm7LBBWbVvLuRGkn1QZAta83RWg=
+    #AWS_SECRET_ACCESS_KEY=[secured]
+  - secure: gDD7zsLqPYb2HOTtNXW1fKhEfR9+MulWCnKbGY/iE9hiPORfb7P2EQ3b3Njw2k7jPd9+M3zKj9wjRTU6cOm0oW//h/07N/OPDRcT3EzrgAS8UUEc4v97EGkxEHjUcfdNdXDMjJSD5hcALu2Va/+n68h50QzFoLC3zpnmJMCJe8PavYK4Wq+y1wKALcXoFc/IZ3k4Tvq2Iej8eV9IxRpAH++zEcAidIXcvB+BZmD7LF6u5WNvGK/cDo1JUTe0bx+nH3Kbr2uEJEG/rWJHkFN+jP2Ty/bk/pxEzm/51xxqNCFTVJK4rI8aJGyedos8EtvcCxi8Fq22JRV0e7iOvwdaSFCLoG244AJ6rOTcpRDG8VowoLIf2ZcuIBscH4G5yMm5jgUJmrh9DMcllErLTS/Ww0ZGNNGlAvP4LT4uIslMpXxLhkDMUEzVH6HTGe/AIfaR8XkZxuK/hLNnPkp8yV0rmrIiDXPU7cUjwsJDHSYcxvDu/R1IsFTwHhABMjc/iv0yPsRedjehd5POzE5GoV+Ekl2WZ4rE+qWy7OKpeLezaXKy+LjU4CQhbrp/luEGdBePDsEIX9Fsiq+VUSfzl9p9X22cb+ofmTSGmxpFeZiALM6zUU7GPoVUsb5YRqtzN3uAyLSdMg9ar3vzV1CJDDJvnC1zaQq+bmIWoBu4WeF2Fhg=
+os:
+- osx
+- linux
 node_js:
-  - "7"
+- '7'
 cache:
   directories:
   - node_modules
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - icnsutils
-    - graphicsmagick
-    - libgnome-keyring-dev
-    - xz-utils
-    - xorriso
-    - xvfb
 install:
-  - nvm install 7.9.0
-  - npm install electron-builder@next
-  - npm install
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=':99.0'; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1; fi
-before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
+- nvm install 7.9.0
+- npm install electron-builder@next
+- npm install
 script:
-  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then npm run package-mac; fi
-  - if [[ "$TRAVIS_OS_NAME" = "linux" ]]; then npm run package-linux; fi
-env:
-  global:
-    secure: fAJbd6uct+KhdpE/LkOXNQVUCLPNnvyh9txvprGqIfxARmQXxZLLDeveCztkLhBDeFxePf+Z2MekfCX7xNnqyt2fqbSTIQZENoltsf4L548Q+2cmiJ05yFXvOoJo59l9KnhorhxpCSFQGofziWBlwScBmyWbNkSkCXtkmJpj+5oE6eyDuKeBPQ6iBdvq0obQf7x33t30WVVNAy+U7lS0yYsfx4OXhMgL7u1GnGNvntMezVxgeSGKYIjDyXSET9yGYF48izBpZEqTUMgBzpYtla7xl9S5SZTpbphrwSZWpCDxNfQ2H6g6lyALrOzGzKlRWe7K0ThmpZU5pM1Na4xTGxJyEuxjcQnGcA04BU8IJ1C2eFuvB0zvt18iDV2RxYI9HV/8dvAV62g/zlzTouA0mjE8eC9rSd2ZIFHmltPjZJbFpg5a3KOqUIt1K3fWyfzmn8eD5jSHL83t5uFBfbwVmi4Y6PfnFzkS/AEM1rjbjcPKdMilU56TvovGaJ1E14RlLTwT0vMfM/BhrbXDdXxEKQn0T1+8K4YGGAuwkVMEuBLWKJn3UMrTof1IRyjSUgI7FQ1DNwIKrwX5n7/Wk7CZAIJ7symsZciQyRa+LeMbfdK7PdbCDz5klHL1W8NRu64cwxmtuc9CIvHvL/1B0XKDmsLMyS3NaF7Fw6dul80evng=
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-mac; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-linux; fi
+deploy:
+  provider: s3
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: brightauthor
+  region: us-east-1
+  skip_cleanup: true
+  local_dir: release
+  upload-dir: release/$BRIGHTAUTHOR_VERSION
+  acl: public_read
+notifications:
+  slack:
+    rooms:
+      # brightsign:[secured] - bacon_build channel
+      secure: P+H6Zj7kkky72KGz9W/VvE/BQTxUjcWcfHLgJ1zsCgflYqq/T4ncHJNJnzwpCXYAVnKF/313yAIpzh8qW6wb1//5aSgGIb0KP8mMOGuAzCnP3kH7+aR4JSWsMnvVtgz4d8AJeigR2I+Gkp4paxwoiqflt7VITpMThsquLSlIi0Zwnwvb7wzkDraDN0Pk9DcbCAuhC0o3+vdcp6oaa22oLRvV+d44YbEAImr4trhYuxZ8widWKBPBZxFh291l8K3EV0ee0AFOPBbAEtRIesddIDfk9pzO1Tl5nC2+xetF8attnCYeTQQ9wOLiyIW755HgBQqK/JMQAvtHT943w1dsJ7Xyubl5Y2mWAx15kD+dWWegiXST6q4GIdGm0/DVMVKamkWOooial6IIIAubO0CzzL8hwQDS+8EqJJ5WQ23vWbwwx9oHRHKzK64+I3njZrjpHlK6J9nlhQaGB51GXe3eRZ09G8cEKtIkl1s58vu8oN4gYKOXdWNLm6V8+sX3ov22kZEfaoApXB/vSPWRn7HmdBvtr/SUAg6gpcW6njqrzRsZP8VQFtYk2vvZQd21jwWVGHwNmL9EWDKCKCxNsVLIO+WJP1fs9pdxbaF/I6WSZ1hOiRbQLoQHODqIB92RQ89l/+W5mvDPHiDJKP9jrSk+cVvgDQXtzCwSxpXtjPczZB8=
