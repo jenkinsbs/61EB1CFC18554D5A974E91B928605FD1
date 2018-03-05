@@ -14,6 +14,14 @@
     "publish-all": "npm run pre-package && build -mwl --x64 -p always"
   },
   "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "repo": "bacon",
+        "owner": "ostosh",
+        "private": "true"
+      }
+    ],
     "directories": {
       "buildResources": "app/resources",
       "app": "stage",
