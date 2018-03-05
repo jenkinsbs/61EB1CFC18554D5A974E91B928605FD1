@@ -12,6 +12,9 @@
     "package-linux": "npm run pre-package && build --l --x64",
     "package-all": "npm run pre-package && build -mwl --x64",
     "publish-all": "npm run pre-package && build -mwl --x64 -p always"
+    "publish-mac": "npm run pre-package && build -m -p always"
+    "publish-windows": "npm run pre-package && build -w --x64 -p always"
+    "publish-linux": "npm run pre-package && build -l -p always"
   },
   "build": {
     "publish": [
