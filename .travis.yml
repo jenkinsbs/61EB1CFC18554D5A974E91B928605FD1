@@ -20,20 +20,6 @@ script:
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run publish-mac; fi
 #- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run publish-linux; fi
 deploy:
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      export CERTIFICATE_OSX_APP_P12=CertApp.p12;
-      export CERTIFICATE_OSX_INST_P12=CertInst.p12;
-      echo $CERTIFICATE_OSX_APP_P12 | base64 --decode > CertApp.p12;
-      echo $CERTIFICATE_OSX_INST_P12 | base64 --decode > CertInst.p12;
-      export KEYCHAIN=build.keychain;
-      security create-keychain -p $CERTIFICATE_OSX_PASSWORD $KEYCHAIN;
-      security default-keychain -s $KEYCHAIN;
-      security unlock-keychain -p $CERTIFICATE_OSX_PASSWORD $KEYCHAIN;
-      security import $CERTIFICATE_OSX_APP_P12 -k $KEYCHAIN -P $CERTIFICATE_OSX_PASSWORD -T /usr/bin/codesign;
-      security import $CERTIFICATE_OSX_INST_P12 -k $KEYCHAIN -P $CERTIFICATE_OSX_PASSWORD -T /usr/bin/codesign;
-
-      #make deploy-or-whatever;
-    fi
   provider: s3
   access_key_id: "$AWS_ACCESS_KEY_ID"
   secret_access_key: "$AWS_SECRET_ACCESS_KEY"
