@@ -17,14 +17,6 @@
     "publish-linux": "npm run pre-package && build -l -p always"
   },
   "build": {
-    "publish": [
-      {
-        "provider": "github",
-        "repo": "bacon",
-        "owner": "ostosh",
-        "private": "true"
-      }
-    ],
     "directories": {
       "buildResources": "app/resources",
       "app": "stage",
