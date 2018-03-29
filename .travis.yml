@@ -3,13 +3,14 @@ sudo: required
 env:
   global:
   - BRIGHTAUTHOR_VERSION=0.99.0
+env:
+  - ELECTRON_CACHE=$HOME/.cache/electron
+  - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 matrix:
   include:
   - os: osx
     language: node_js
-    env:
-      - ELECTRON_CACHE=$HOME/.cache/electron
-      - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+    osx_image: xcode9.0
   - os: linux
     language: generic
 node_js:
