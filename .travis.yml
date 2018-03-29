@@ -1,17 +1,24 @@
-language: c
 dist: trusty
 sudo: required
 env:
   global:
   - BRIGHTAUTHOR_VERSION=0.99.0
-os:
-- osx
-- linux
+matrix:
+  include:
+  - os: osx
+    language: node_js
+    env:
+      - ELECTRON_CACHE=$HOME/.cache/electron
+      - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+  - os: linux
+    language: generic
 node_js:
 - '7'
 cache:
   directories:
-  - node_modules
+    - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
 install:
 - nvm install 7.9.0
 - npm install electron-builder@next
