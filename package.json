@@ -39,8 +39,7 @@
       "category": "public.app-category.tools",
       "target": [
         "zip",
-        "dmg",
-		"mas"
+        "dmg"
       ],
 	  "entitlements": "build/entitlements.mac.plist",
       "type": "distribution",
