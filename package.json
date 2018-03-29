@@ -39,9 +39,18 @@
       "category": "public.app-category.tools",
       "target": [
         "zip",
-        "dmg"
-      ]
+        "dmg",
+		"mas"
+      ],
+	  "entitlements": "build/entitlements.mac.plist",
+      "type": "distribution",
+      "icon": "app/resources/icon.icns"
     },
+	"mas": {
+	  "entitlements": "build/entitlements.mas.plist",
+      "type": "distribution",
+      "category": "public.app-category.tools"
+	},
     "win": {
       "target": [
         "zip",
