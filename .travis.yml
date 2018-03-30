@@ -31,8 +31,8 @@ script:
 after_script:
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-      codesign -dv --verbose=4 /Users/travis/build/jenkinsbs/61EB1CFC18554D5A974E91B928605FD1/release/BrightAuthor-0.99.0.dmg;
-      codesign -dv --verbose=4 /Users/travis/build/jenkinsbs/61EB1CFC18554D5A974E91B928605FD1/release/mac/BrightAuthor.app;
+      codesign -dv --verbose=4 release/BrightAuthor-0.99.0.dmg;
+      codesign -dv --verbose=4 release/mac/BrightAuthor.app;
     fi
 deploy:
   provider: s3
