@@ -2,7 +2,7 @@ dist: trusty
 sudo: required
 env:
   global:
-  - BRIGHTAUTHOR_VERSION=0.99.0
+  - BRIGHTAUTHOR_VERSION=0.12.0
   - ELECTRON_CACHE=$HOME/.cache/electron
   - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 matrix:
