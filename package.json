@@ -18,11 +18,12 @@
   },
   "build": {
     "publish": [
-    { 
-      "provider": "github",
-      "repo": "61EB1CFC18554D5A974E91B928605FD1",
-      "owner": "jenkinsbs"
-    },
+      { 
+        "provider": "github",
+        "repo": "61EB1CFC18554D5A974E91B928605FD1",
+        "owner": "jenkinsbs"
+      }
+	],
     "directories": {
       "buildResources": "app/resources",
       "app": "stage",
