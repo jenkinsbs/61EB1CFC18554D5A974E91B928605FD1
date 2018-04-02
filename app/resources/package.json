@@ -1,7 +1,7 @@
 {
     "name":  "BrightAuthor",
     "productName":  "BrightAuthor",
-    "version":  "0.99.0",
+    "version":  "0.12.0",
     "description":  "BrightAuthor Connected",
     "author":  "BrightSign",
     "main":  "main.js",

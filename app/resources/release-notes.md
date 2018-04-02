@@ -1,2 +1,2 @@
-0.11.1 Notes:
+0.12.0 Notes:
 Jenkins Build Test
