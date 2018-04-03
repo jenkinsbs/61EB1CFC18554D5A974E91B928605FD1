@@ -15,10 +15,12 @@ matrix:
 node_js:
   - '7'
 cache:
+  ccache: true
   directories:
     - node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
+	- $HOME/Library/Caches/Homebrew
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install jq; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install jq; fi
@@ -28,7 +30,7 @@ install:
   - npm install
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then security find-identity -v; fi
-  - jq -c '.build.publish[?(.provider='github')].token = env.GH_TOKEN' package.json > tmp.$$.json && mv tmp.$$.json package.json;
+  - jq -c '.build.publish[\?(.provider='github')].token = env.GH_TOKEN' package.json > tmp.$$.json && mv tmp.$$.json package.json;
 script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run publish-mac; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run publish-linux; fi
@@ -38,7 +40,7 @@ after_script:
       codesign -dv --verbose=4 release/BrightAuthor-$BRIGHTAUTHOR_VERSION.dmg;
       codesign -dv --verbose=4 release/mac/BrightAuthor.app;
     fi
-  - jq -c 'del(.build.publish[?(.provider='github')].token)' package.json > tmp.$$.json && mv tmp.$$.json package.json;
+  - jq -c 'del(.build.publish[\?(.provider='github')].token)' package.json > tmp.$$.json && mv tmp.$$.json package.json;
 deploy:
   provider: s3
   access_key_id: "$AWS_ACCESS_KEY_ID"
