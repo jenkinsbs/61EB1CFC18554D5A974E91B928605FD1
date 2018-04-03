@@ -24,7 +24,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install jq; fi
 install:
   - nvm install 7.9.0
-  - npm install electron-builder@@19.56.0
+  - npm install electron-builder@19.56.0
   - npm install
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then security find-identity -v; fi
