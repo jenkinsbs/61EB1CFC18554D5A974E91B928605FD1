@@ -20,7 +20,7 @@ cache:
     - node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
-	- $HOME/Library/Caches/Homebrew
+    - $HOME/Library/Caches/Homebrew
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install jq; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install jq; fi
